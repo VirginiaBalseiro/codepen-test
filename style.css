@@ -1,9 +1,14 @@
 body { 
-  background-color: darkslategray;
+  background-color: #202542;
   margin: 0;
   padding: 20;
   color: white;
-  font-family: sans-serif;
+  font-family: Lato, sans-serif;
+}
+
+.map-container {
+  width: 100%;
+  text-align: center;
 }
 
 .doc {
@@ -14,10 +19,14 @@ div.tooltip {
   position: absolute;
   padding: 10px;                
   font: 12px Arial;        
-  background: orange;
+  background: #7C4DFF;
   color: white;
   box-shadow: 1px 1px 10px rgba(128, 128, 128, 0.6);
   border: 0px;        
   border-radius: 2px;            
   pointer-events: none;            
+}
+
+a {
+  color: white;
 }

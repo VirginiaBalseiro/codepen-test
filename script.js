@@ -10,8 +10,8 @@ var tooltip = body.append("div")
   .attr("id", "tooltip")
   .style("opacity", 0)
 
-var width = 960,
-    height = 500,
+var width = 400,
+    height = 400,
     radius = Math.min(width, height) / 2;
 
 var color = d3.scaleOrdinal()
@@ -61,9 +61,11 @@ d3.csv(dataUrl, type, function(error, data) {
   });
 
   g.append("text")
-      .attr("transform", function(d) { return "translate(" + labelArc.centroid(d) + ")"; })
+      .attr("transform", function(d) { 
+    return "translate(" + labelArc.centroid(d).map(x => x-12) + ")"; })
       .attr("dy", ".35em")
-      .text(function(d) { return percentage(total, d.data.count) + "%"; });
+      .text(function(d) { return percentage(total, d.data.count); })
+  .style("fill", "white");
 });
 
 function type(d) {
@@ -75,7 +77,7 @@ function type(d) {
 function map() {
 
 var body = d3.select("body");
-var width = 800;
+var width = 1200;
 var height = 800;
 
 var tooltip = body.append("div")
@@ -88,7 +90,6 @@ var svg = d3.select("#country")
 .append("svg")
   .attr("width", width)
   .attr("height", height);
-console.log(svg)
 // Map and projection
 var path = d3.geoPath();
 var projection = d3.geoMercator()
@@ -101,7 +102,7 @@ var data = d3.map();
 var countries = d3.map();
 var colorScale = d3.scaleThreshold()
   .domain([0, 1, 2.5, 5, 10, 20])
-  .range(d3.schemeOranges[7]);
+  .range(d3.schemePurples[7]);
 // Load external data and boot
 d3.queue()
   .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
@@ -198,9 +199,9 @@ d3.csv(dataUrl, function(originalData) {
       .attr('width', function(d) {
         return d;
   })
-      .style('fill', 'orange')
+      .style('fill', '#7C4DFF')
     .style("stroke-width", 2) 
-    .style("stroke", "darkslategrey")  
+    .style("stroke", "#202542")  
      //Create labels
                 svgContainer.selectAll("text")
                     .data(data) 
