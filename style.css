@@ -1,0 +1,23 @@
+body { 
+  background-color: darkslategray;
+  margin: 0;
+  padding: 20;
+  color: white;
+  font-family: sans-serif;
+}
+
+.doc {
+  padding: 30px;
+}
+
+div.tooltip {
+  position: absolute;
+  padding: 10px;                
+  font: 12px Arial;        
+  background: orange;
+  color: white;
+  box-shadow: 1px 1px 10px rgba(128, 128, 128, 0.6);
+  border: 0px;        
+  border-radius: 2px;            
+  pointer-events: none;            
+}
