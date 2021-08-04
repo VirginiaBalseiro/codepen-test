@@ -115,6 +115,7 @@ function ready(error, topo) {
   svg.append("g")
     .selectAll("path")
     .data(topo.features)
+    .data(topo.features.filter(d => d.id !== "GRL" && d.id !== "ATA"))
     .enter()
     .append("path")
       // draw each country
@@ -247,3 +248,82 @@ barChart("https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/self_
 barChart("https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/self_description_writers.csv","self-description-writers")
 barChart("https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/events.csv","events")
 barChart("https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/belong.csv","belong")
+
+
+function ethnicityChart() {
+  function getColorForEthnicity(name) {
+    const COLOR_MAP = {
+      "Asian": "#0e8ebe",
+      "Black or African American": "#bb7272",
+      "Hispanic, Latino or Spanish origin": "#805aa0",
+      "White": "#80a68d",
+      "Middle Eastern or North African": "#d0b87f"
+    }
+    return COLOR_MAP[name]
+  }
+  var dataUrl = "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/ethnic_category2.csv";
+  const svgContainerId = "ethnicity-2";
+  d3.csv(dataUrl, function(originalData) {
+    console.log(originalData.filter(item => item.response === "total")[0].count)
+    const dataWithFill = originalData.map((item) => {
+      return {
+        color: getColorForEthnicity(item.response),
+        ...item,
+    }
+    })
+    const mainCategories = dataWithFill.filter((item) => !!item.color);
+   const container = document.getElementById("ethnicity-2");
+    mainCategories.sort((a, b) => b.count - a.count).forEach((item) => {
+      for (i = 0; i < item.count; i++){
+      const circle = document.createElement("span")
+      circle.innerHTML = "   "
+      let className = item.response.toLowerCase()
+      if (className.indexOf(",") !== -1) {
+        className = className.substr(0, className.indexOf(","))
+      } else if (className.indexOf(" ") !== -1) {
+        className = className.substr(0, className.indexOf(" "))
+      } 
+      circle.setAttribute("class", className)
+      circle.setAttribute("title", item.response)
+      container.appendChild(circle)
+    }
+      })
+       
+    const mixedCategories = dataWithFill.filter((item) => item.type === "1");
+    mixedCategories.map((item) => {
+     for (i = 0; i < item.count; i++){
+      const circle = document.createElement("span")
+      circle.innerHTML = "   "
+      let className = item.response.toLowerCase().split(", ").join("-").split(" ").join("-");
+       console.log(className)
+      circle.setAttribute("class", className)
+      circle.setAttribute("title", item.response)
+      container.appendChild(circle)
+    }   
+    })
+   
+    
+    const legendContainer = document.getElementById("ethnicity-legend");
+    mainCategories.forEach((item) => {
+      const legend = document.createElement("div");
+      const title = document.createElement("h4");
+      const percentageTitle = document.createElement("h1");
+      title.innerHTML = item.response;
+      title.setAttribute("class", "legend-title");
+      percentageTitle.innerHTML = percentage(originalData.filter(item => item.response === "total")[0].count, item.count)
+            let className = item.response.toLowerCase()
+      if (className.indexOf(",") !== -1) {
+        className = className.substr(0, className.indexOf(","))
+      } else if (className.indexOf(" ") !== -1) {
+        className = className.substr(0, className.indexOf(" "))
+      } 
+      percentageTitle.setAttribute("class", `percentage-title-${className}`);
+      legend.appendChild(title);
+      legend.appendChild(percentageTitle);
+      legendContainer.appendChild(legend)
+    })
+ 
+  })
+}
+
+ethnicityChart();

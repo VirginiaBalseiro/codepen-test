@@ -1,9 +1,9 @@
 body { 
-  background-color: #202542;
+  background-color: #180f33;
   margin: 0;
   padding: 20;
   color: white;
-  font-family: Lato, sans-serif;
+  font-family: Code Pro, Roboto, sans-serif;
 }
 
 .map-container {
@@ -29,4 +29,91 @@ div.tooltip {
 
 a {
   color: white;
+}
+
+.asian {
+  background-color:#0e8ebe
+} 
+.black {
+ background-color: #bb7272
+}
+.hispanic {
+  background-color: #805aa0
+}
+.white {
+  background-color: #80a68d
+}
+.middle {
+  background-color: #d0b87f
+}
+
+.asian, .black, .middle, .hispanic, .white, .white-asian,
+.white-black-or-african-american, 
+.hispanic-latino-or-spanish-origin-white-,
+.white-middle-eastern-or-north-african {
+    width: 25px;
+    height: 25px;
+  margin: 5px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#ethnicity-wrapper {
+  display: flex;
+  padding: 50px;
+  flex-direction: row;
+  align-items: center;
+  line-height: 1;
+  width: 80%;
+}
+
+#ethnicity-2, #ethnicity-legend { 
+display: inline-block;
+width: 50%;
+  height: max-content
+}
+
+#ethnicity-legend {
+  float: left;
+}
+
+#ethnicity-2 {
+  float: right;
+}
+
+
+.percentage-title-asian {
+  color:#0e8ebe
+} 
+.percentage-title-black {
+ color: #bb7272
+}
+.percentage-title-hispanic {
+  color: #805aa0
+}
+.percentage-title-white {
+ color: #80a68d
+}
+.percentage-title-middle {
+  color: #d0b87f
+}
+
+.legend-title {
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.white-asian {
+      background: linear-gradient(90deg, #80a68d 50%, #0e8ebe 50%);
+}
+.white-black-or-african-american
+ {
+      background: linear-gradient(90deg, #80a68d 50%, #bb7272 50%);
+}
+.hispanic-latino-or-spanish-origin-white- {
+      background: linear-gradient(90deg, #805aa0 50%, #80a68d 50%);
+}
+.white-middle-eastern-or-north-african
+ {
+      background: linear-gradient(90deg, #80a68d 50%, #d0b87f 50%);
 }
