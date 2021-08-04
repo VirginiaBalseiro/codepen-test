@@ -276,7 +276,10 @@ function ethnicityChart() {
     mainCategories.sort((a, b) => b.count - a.count).forEach((item) => {
       for (i = 0; i < item.count; i++){
       const circle = document.createElement("span")
-      circle.innerHTML = "   "
+      const tooltip = document.createElement("span");
+        tooltip.innerHTML = item.response;
+        tooltip.setAttribute("class", "ethnic-category-tooltip")
+        circle.appendChild(tooltip);
       let className = item.response.toLowerCase()
       if (className.indexOf(",") !== -1) {
         className = className.substr(0, className.indexOf(","))
@@ -284,7 +287,6 @@ function ethnicityChart() {
         className = className.substr(0, className.indexOf(" "))
       } 
       circle.setAttribute("class", className)
-      circle.setAttribute("title", item.response)
       container.appendChild(circle)
     }
       })
@@ -293,11 +295,13 @@ function ethnicityChart() {
     mixedCategories.map((item) => {
      for (i = 0; i < item.count; i++){
       const circle = document.createElement("span")
-      circle.innerHTML = "   "
+            const tooltip = document.createElement("span");
+        tooltip.innerHTML = item.response;
+        tooltip.setAttribute("class", "ethnic-category-tooltip")
+        circle.appendChild(tooltip);
       let className = item.response.toLowerCase().split(", ").join("-").split(" ").join("-");
        console.log(className)
       circle.setAttribute("class", className)
-      circle.setAttribute("title", item.response)
       container.appendChild(circle)
     }   
     })
@@ -327,3 +331,62 @@ function ethnicityChart() {
 }
 
 ethnicityChart();
+
+function codingExperienceChart() {
+  function getColorForResponse(name) {
+    const COLOR_MAP = {
+      "Yes": "#9671ff",
+      "No": "#494f56",
+    }
+    return COLOR_MAP[name]
+  }
+  var dataUrl = "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/code.csv";
+  const svgContainerId = "coding-experience";
+  d3.csv(dataUrl, function(originalData) {
+    console.log(originalData)
+    const total = originalData.reduce((acc, val) => 
+      parseInt(acc.count) + parseInt(val.count)
+    );
+    console.log(total)
+    const dataWithFill = originalData.map((item) => {
+      return {
+        color: getColorForResponse(item.response),
+        ...item,
+    }
+    })
+    const mainCategories = dataWithFill.filter((item) => !!item.color);
+   const container = document.getElementById(svgContainerId);
+    mainCategories.sort((a, b) => b.count - a.count).forEach((item) => {
+      for (i = 0; i < item.count; i++){
+      const icon = document.createElement("span")
+      icon.innerHTML = '<i class="fas fa-laptop-code"></i>'
+      let className = item.response.toLowerCase()
+      if (className.indexOf(",") !== -1) {
+        className = className.substr(0, className.indexOf(","))
+      } else if (className.indexOf(" ") !== -1) {
+        className = className.substr(0, className.indexOf(" "))
+      } 
+      icon.setAttribute("class", className)
+      container.appendChild(icon)
+    }
+      })   
+    
+    const legendContainer = document.getElementById("code-legend");
+    mainCategories.forEach((item) => {
+      const legend = document.createElement("div");
+      const title = document.createElement("h4");
+      const percentageTitle = document.createElement("h1");
+      title.innerHTML = item.response;
+      title.setAttribute("class", "legend-title-code");
+      percentageTitle.innerHTML = percentage(total, item.count)
+      const className = item.response.toLowerCase();
+      percentageTitle.setAttribute("class", `percentage-title-${className}`);
+      legend.appendChild(percentageTitle);
+      legend.appendChild(title);
+      legendContainer.appendChild(legend)
+    })
+ 
+  })
+}
+
+codingExperienceChart()

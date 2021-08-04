@@ -56,9 +56,17 @@ a {
   margin: 5px;
   border-radius: 50%;
   display: inline-block;
+    cursor: pointer;
 }
 
-#ethnicity-wrapper {
+.asian:hover .ethnic-category-tooltip, .black:hover .ethnic-category-tooltip, .middle:hover .ethnic-category-tooltip, .hispanic:hover .ethnic-category-tooltip, .white:hover .ethnic-category-tooltip, .white-asian:hover span,
+.white-black-or-african-american:hover .ethnic-category-tooltip, 
+.hispanic-latino-or-spanish-origin-white-:hover .ethnic-category-tooltip,
+.white-middle-eastern-or-north-african:hover .ethnic-category-tooltip {
+  opacity: 0.8;
+}
+
+#ethnicity-wrapper, #coding-wrapper {
   display: flex;
   padding: 50px;
   flex-direction: row;
@@ -116,4 +124,54 @@ width: 50%;
 .white-middle-eastern-or-north-african
  {
       background: linear-gradient(90deg, #80a68d 50%, #d0b87f 50%);
+}
+
+.ethnic-category-tooltip {
+  position: absolute;
+  opacity: 0;
+    font-size: 12px;
+  display: flex;
+  background-color: gray;
+  height: 20px;
+  padding: 2.5px;
+  align-items: center;
+  transform: translate(10px, 10px)
+}
+
+#coding-experience {
+  width: 50%;
+}
+
+.yes, .no {
+  width: 35px;
+  height: 35px;
+  padding: 5px;
+  font-size: 2.5rem;
+}
+
+.yes {
+  color: #9671ff
+}
+
+.no {
+  color: #494f56
+}
+
+.percentage-title-yes {
+    color: #9671ff;
+  font-size: 6rem;
+}
+
+.percentage-title-no {
+    color: #494f56;
+  font-size: 6rem;
+      
+}
+
+#code-legend {
+  width: 50%
+}
+
+.legend-title-code {
+  font-size: 2.5rem;
 }
