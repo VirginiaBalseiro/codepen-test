@@ -149,25 +149,14 @@ d3.csv(dataUrl, function(originalData) {
   const total = originalData.filter((item) => item.response.toLowerCase() === "total")[0].count
   const data = originalData.filter((item) => item.response.toLowerCase() !== "total").sort((a, b) => b.count - a.count);
   const w = 900;
-  const h = data.length * 20;
+  const barWidth = 60;
+  const h = data.length * barWidth;
   const padding = 10;
-  const barWidth = 20 ;
-    const svgContainer = d3.select(`#${svgContainerId}`)
-                .append("svg")
-                .attr("width", w)
-                .attr("height", h)
-    
-  const value = data.map(function(item){
+
+  let scaledValues = [];
+    const value = data.map(function(item){
     return +item.count;
   });
-  const name = data.map(function(item) {
-    return item.response;
-  })
-  const yScale = d3.scaleLinear()
-        .domain([d3.min(value), d3.max(value)])
-        .range([0, h]);  
-  
-  let scaledValues = [];
   let valuesMin = d3.min(value);
   let valuesMax = d3.max(value);
   var diff = valuesMax - valuesMin;
@@ -175,56 +164,30 @@ d3.csv(dataUrl, function(originalData) {
         .domain([valuesMin, valuesMax])
        .range([(valuesMin/valuesMax)*w, (diff < 20 ? w-200 : w/2)]);
 
-  scaledValues = value.map(function(item){
-    return linearScale(item);
+  scaledValues = data.map(function(item){
+    return {
+      scaledValue: linearScale(item.count),
+      ...item
+    }
   });
-  const xAxisScale = d3.scaleLinear()
-      .domain([valuesMin, valuesMax])
-      .range([(valuesMin/valuesMax)*w, w/2]);
-  svgContainer.selectAll("rect")
-     .data(scaledValues)
-     .enter()
-     .append("rect")
-     .attr('data-response', function(d, i) {
-        return data[i].response
-        })
-     .attr('data-count', function(d, i){
-        return data[i].count
-        })
-      .attr('class', 'bar')
-      .attr('y', function(d, i){
-        return i * barWidth;
-        })
-      .attr('x', 0)
-      .attr('height', barWidth)
-      .attr('width', function(d) {
-        return d;
+  scaledValues.forEach((item) => {
+      const container = document.getElementById(svgContainerId)
+      const barLegendContainer = document.createElement("div");
+      barLegendContainer.setAttribute("class", "bar-chart-container")
+      console.log(container, svgContainerId)
+      const bar = document.createElement("div");
+      const legend = document.createElement("div");
+      legend.setAttribute("class", "legend");
+      legend.innerHTML = item.response;
+      bar.setAttribute("class", "bar");
+      bar.setAttribute("style", `width:${item.scaledValue}px;`);
+      container.appendChild(barLegendContainer)
+      barLegendContainer.appendChild(legend)
+      barLegendContainer.appendChild(bar);
   })
-      .style('fill', '#7C4DFF')
-    .style("stroke-width", 2) 
-    .style("stroke", "#202542")  
-     //Create labels
-                svgContainer.selectAll("text")
-                    .data(data) 
-                    .enter()
-                    .append("text")
-                    .text(function (d) {
-                  const label = d.response;
-                  const perc = percentage(total, d.count);
-                        return label + " - " + perc;
-                    })
-                    .attr("text-anchor", "left")
-                    .attr("x", function (d, i) {
-                        return scaledValues[i] + 2;
-                    })
-                    .attr("y", function (d, i) {
-                        return (i+1) * barWidth - 5;
-                    })
-                    .attr("font-family", "sans-serif")
-                    .attr("font-size", "14px")
-                    .attr("fill", "white");
-  })
- }
+
+ })
+}
 
 map();
 

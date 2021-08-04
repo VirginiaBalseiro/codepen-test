@@ -6,6 +6,18 @@ body {
   font-family: Code Pro, Roboto, sans-serif;
 }
 
+h1 {
+  font-size: 3.5rem
+}
+
+h2 {
+  font-size: 3rem
+}
+
+h3 {
+  font-size: 2.5rem
+}
+
 .map-container {
   width: 100%;
   text-align: center;
@@ -145,8 +157,11 @@ width: 50%;
 .yes, .no {
   width: 35px;
   height: 35px;
-  padding: 5px;
   font-size: 2.5rem;
+}
+
+.yes i, .no i {
+  padding: 5px
 }
 
 .yes {
@@ -174,4 +189,23 @@ width: 50%;
 
 .legend-title-code {
   font-size: 2.5rem;
+}
+
+.bar {
+  background-color: #80a68d;
+  height: 60px;
+  border-radius: 0 5px 5px 0;
+  margin: 5px;
+}
+
+.bar-chart-container {
+  display: flex;
+}
+
+.legend {
+width: 30%;
+    justify-content: flex-end;
+    align-items: center;
+    display: flex;
+  margin-right: 10px;
 }
