@@ -1,9 +1,91 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #180f33;
   margin: 0;
-  padding: 20;
+  padding: 0;
   color: white;
   font-family: Code Pro Regular Lowercase, sans-serif;
+  text-align: center;
+}
+
+.title-and-image-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column-reverse;
+  text-align: center;
+}
+
+.title-container {
+  margin-left: 1rem;
+}
+
+.image {
+  width: 100%;
+}
+
+.dates-and-participants {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.participants {
+  background-color: white;
+  color: #180f33;
+  text-align: center;
+}
+
+#dates-title,
+#participants-title {
+  font-size: 3.5rem;
+}
+
+.participants,
+.dates {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.participants h3,
+.dates h3 {
+  font-size: 1rem;
+  text-transform: uppercase;
+}
+
+.dates h3 {
+  color: white;
+}
+
+#dates-title {
+  color: #d6ae89;
+}
+
+@media only screen and (min-width: 600px) {
+  .title-and-image-container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 50% 50%;
+    text-align: left;
+  }
+
+  .title-container {
+    margin-left: 1rem;
+  }
+
+  .image {
+    width: 100%;
+  }
+
+  .dates-and-participants {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
 }
 
 h1 {
@@ -16,6 +98,10 @@ h2 {
 
 h3 {
   font-size: 2.5rem;
+}
+
+#survey-title {
+  color: #d0b87f;
 }
 
 .map-container {

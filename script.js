@@ -18,13 +18,13 @@ function pieChart(dataUrl, svgContainer) {
   var color = d3
     .scaleOrdinal()
     .range([
-      "#4A2E99",
-      "#633DCC",
       "#7C4DFF",
       "#9671FF",
-      "#BDA6FF",
+      "#633DCC",
+      "#4A2E99",
       "#E5DBFF",
-      "#F1EDFF"
+      "#F1EDFF",
+      "#BDA6FF"
     ]);
 
   var arc = d3.arc().outerRadius(radius).innerRadius(100);
@@ -51,10 +51,11 @@ function pieChart(dataUrl, svgContainer) {
 
     const values = data.map((d) => d.count);
     const total = values.reduce((acc, val) => acc + val);
+    const filteredData = data.filter((d) => d.count > 3);
 
     var g = svg
       .selectAll(".arc")
-      .data(pie(data))
+      .data(pie(filteredData))
       .enter()
       .append("g")
       .attr("class", "arc");
@@ -238,17 +239,13 @@ pieChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/years_code.csv",
   "years-code"
 );
-barChart(
+pieChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/gender_identity.csv",
   "gender-identity"
 );
-barChart(
+pieChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/languages.csv",
   "languages"
-);
-barChart(
-  "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/ethnic_category.csv",
-  "ethnic-category"
 );
 barChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/participate.csv",
