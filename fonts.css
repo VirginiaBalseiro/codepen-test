@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "Code Pro";
+  src: url("assets/Code Pro.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Code Pro Regular Lowercase";
+  src: url("assets/Code Pro LC.otf") format("opentype");
+}

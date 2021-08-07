@@ -1,21 +1,21 @@
-body { 
+body {
   background-color: #180f33;
   margin: 0;
   padding: 20;
   color: white;
-  font-family: Code Pro, Roboto, sans-serif;
+  font-family: Code Pro Regular Lowercase, sans-serif;
 }
 
 h1 {
-  font-size: 3.5rem
+  font-size: 3.5rem;
 }
 
 h2 {
-  font-size: 3rem
+  font-size: 3rem;
 }
 
 h3 {
-  font-size: 2.5rem
+  font-size: 2.5rem;
 }
 
 .map-container {
@@ -29,14 +29,16 @@ h3 {
 
 div.tooltip {
   position: absolute;
-  padding: 10px;                
-  font: 12px Arial;        
-  background: #7C4DFF;
-  color: white;
+  padding: 10px;
+  opacity: 0;
+  background-color: white;
+  color: black;
   box-shadow: 1px 1px 10px rgba(128, 128, 128, 0.6);
-  border: 0px;        
-  border-radius: 2px;            
-  pointer-events: none;            
+  border: 0px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  transform: translate(10px, 10px);
 }
 
 a {
@@ -44,41 +46,52 @@ a {
 }
 
 .asian {
-  background-color:#0e8ebe
-} 
+  background-color: #0e8ebe;
+}
 .black {
- background-color: #bb7272
+  background-color: #bb7272;
 }
 .hispanic {
-  background-color: #805aa0
+  background-color: #805aa0;
 }
 .white {
-  background-color: #80a68d
+  background-color: #80a68d;
 }
 .middle {
-  background-color: #d0b87f
+  background-color: #d0b87f;
 }
 
-.asian, .black, .middle, .hispanic, .white, .white-asian,
-.white-black-or-african-american, 
+.asian,
+.black,
+.middle,
+.hispanic,
+.white,
+.white-asian,
+.white-black-or-african-american,
 .hispanic-latino-or-spanish-origin-white-,
 .white-middle-eastern-or-north-african {
-    width: 25px;
-    height: 25px;
+  width: 25px;
+  height: 25px;
   margin: 5px;
   border-radius: 50%;
   display: inline-block;
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.asian:hover .ethnic-category-tooltip, .black:hover .ethnic-category-tooltip, .middle:hover .ethnic-category-tooltip, .hispanic:hover .ethnic-category-tooltip, .white:hover .ethnic-category-tooltip, .white-asian:hover span,
-.white-black-or-african-american:hover .ethnic-category-tooltip, 
+.asian:hover .ethnic-category-tooltip,
+.black:hover .ethnic-category-tooltip,
+.middle:hover .ethnic-category-tooltip,
+.hispanic:hover .ethnic-category-tooltip,
+.white:hover .ethnic-category-tooltip,
+.white-asian:hover span,
+.white-black-or-african-american:hover .ethnic-category-tooltip,
 .hispanic-latino-or-spanish-origin-white-:hover .ethnic-category-tooltip,
 .white-middle-eastern-or-north-african:hover .ethnic-category-tooltip {
-  opacity: 0.8;
+  opacity: 1;
 }
 
-#ethnicity-wrapper, #coding-wrapper {
+#ethnicity-wrapper,
+#coding-wrapper {
   display: flex;
   padding: 50px;
   flex-direction: row;
@@ -87,10 +100,12 @@ a {
   width: 80%;
 }
 
-#ethnicity-2, #ethnicity-legend { 
-display: inline-block;
-width: 50%;
-  height: max-content
+#ethnicity-2,
+#ethnicity-legend {
+  display: inline-block;
+  width: 50%;
+  white-space: no-wrap;
+  height: max-content;
 }
 
 #ethnicity-legend {
@@ -101,21 +116,20 @@ width: 50%;
   float: right;
 }
 
-
 .percentage-title-asian {
-  color:#0e8ebe
-} 
+  color: #0e8ebe;
+}
 .percentage-title-black {
- color: #bb7272
+  color: #bb7272;
 }
 .percentage-title-hispanic {
-  color: #805aa0
+  color: #805aa0;
 }
 .percentage-title-white {
- color: #80a68d
+  color: #80a68d;
 }
 .percentage-title-middle {
-  color: #d0b87f
+  color: #d0b87f;
 }
 
 .legend-title {
@@ -124,67 +138,68 @@ width: 50%;
 }
 
 .white-asian {
-      background: linear-gradient(90deg, #80a68d 50%, #0e8ebe 50%);
+  background: linear-gradient(90deg, #80a68d 50%, #0e8ebe 50%);
 }
-.white-black-or-african-american
- {
-      background: linear-gradient(90deg, #80a68d 50%, #bb7272 50%);
+.white-black-or-african-american {
+  background: linear-gradient(90deg, #80a68d 50%, #bb7272 50%);
 }
 .hispanic-latino-or-spanish-origin-white- {
-      background: linear-gradient(90deg, #805aa0 50%, #80a68d 50%);
+  background: linear-gradient(90deg, #805aa0 50%, #80a68d 50%);
 }
-.white-middle-eastern-or-north-african
- {
-      background: linear-gradient(90deg, #80a68d 50%, #d0b87f 50%);
+.white-middle-eastern-or-north-african {
+  background: linear-gradient(90deg, #80a68d 50%, #d0b87f 50%);
 }
 
 .ethnic-category-tooltip {
   position: absolute;
+  padding: 10px;
   opacity: 0;
-    font-size: 12px;
+  background-color: white;
+  color: black;
+  box-shadow: 1px 1px 10px rgba(128, 128, 128, 0.6);
+  border: 0px;
+  border-radius: 5px;
   display: flex;
-  background-color: gray;
-  height: 20px;
-  padding: 2.5px;
   align-items: center;
-  transform: translate(10px, 10px)
+  transform: translate(10px, 10px);
 }
 
 #coding-experience {
   width: 50%;
 }
 
-.yes, .no {
+.yes,
+.no {
   width: 35px;
   height: 35px;
   font-size: 2.5rem;
 }
 
-.yes i, .no i {
-  padding: 5px
+.yes i,
+.no i {
+  padding: 5px;
 }
 
 .yes {
-  color: #9671ff
+  color: #9671ff;
 }
 
 .no {
-  color: #494f56
+  color: #494f56;
 }
 
 .percentage-title-yes {
-    color: #9671ff;
+  color: #9671ff;
   font-size: 6rem;
 }
 
 .percentage-title-no {
-    color: #494f56;
+  color: #494f56;
   font-size: 6rem;
-      
 }
 
 #code-legend {
-  width: 50%
+  width: 50%;
 }
 
 .legend-title-code {
@@ -199,13 +214,17 @@ width: 50%;
 }
 
 .bar-chart-container {
-  display: flex;
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 30% 70%;
+  grid-gap: 15px;
 }
 
 .legend {
-width: 30%;
-    justify-content: flex-end;
-    align-items: center;
-    display: flex;
-  margin-right: 10px;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+  text-transform: capitalize;
+  text-align: right;
 }
