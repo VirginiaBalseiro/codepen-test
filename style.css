@@ -12,7 +12,8 @@ body {
 }
 
 section {
-  padding: 3rem;
+  text-align: center;
+  padding: 1rem;
   line-height: 1.5rem;
 }
 
@@ -133,7 +134,7 @@ hr {
 
 .map-and-legend-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
 }
 
 .countries-list {
@@ -141,7 +142,7 @@ hr {
   text-align: left;
   display: flex;
   flex-direction: column;
-  align-self: flex-end;
+  align-self: flex-start;
 }
 
 .language-and-legend-container {
@@ -201,16 +202,33 @@ hr {
 }
 
 @media only screen and (min-width: 950px) and (max-width: 1099px) {
-  .language-and-legend-container {
-    display: grid;
-    grid-template-columns: 60% 40%;
-  }
   .language-lists-container {
     display: flex;
     flex-direction: column;
   }
+}
+
+@media only screen and (min-width: 950px) {
+  .language-and-legend-container {
+    display: grid;
+    grid-template-columns: 60% 40%;
+  }
   .other-details {
     text-align: right;
+  }
+
+  section {
+    padding: 3rem;
+  }
+
+  #ethnicity-wrapper,
+  #coding-wrapper {
+    display: flex;
+    padding: 50px;
+    flex-direction: row !important;
+    align-items: center;
+    line-height: 1;
+    width: 100%;
   }
 }
 
@@ -238,6 +256,10 @@ hr {
   .map-and-legend-container {
     display: grid;
     grid-template-columns: 20% 80%;
+  }
+  .countries-list {
+    flex-direction: column;
+    align-self: flex-end;
   }
 }
 
@@ -332,19 +354,20 @@ a {
 #ethnicity-wrapper,
 #coding-wrapper {
   display: flex;
+  flex-direction: column;
   padding: 50px;
-  flex-direction: row;
   align-items: center;
   line-height: 1;
-  width: 80%;
+  width: 100%;
 }
 
 #ethnicity-2,
 #ethnicity-legend {
   display: inline-block;
-  width: 50%;
+  width: 100%;
   white-space: no-wrap;
   height: max-content;
+  text-align: center;
 }
 
 #ethnicity-legend {
@@ -353,6 +376,10 @@ a {
 
 #ethnicity-2 {
   float: right;
+}
+#ethnicity-wrapper h1 {
+  padding: 0;
+  margin: 0;
 }
 
 .percentage-title-asian {
@@ -452,11 +479,38 @@ a {
   margin: 5px;
 }
 
+.vertical-bar {
+  background-color: #0e8ebe;
+  width: 80px;
+  border-radius: 5px 5px 0 0;
+  margin: 10px;
+}
+
+.vertical-barchart-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
 .bar-chart-container {
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: 30% 70%;
   grid-gap: 15px;
+}
+
+.vertical-bar-chart-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.vertical-legend {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  text-transform: capitalize;
+  text-align: center;
+  margin: 10px;
 }
 
 .legend {

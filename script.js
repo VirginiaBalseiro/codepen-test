@@ -184,7 +184,7 @@ function barChart(dataUrl, svgContainerId) {
     )[0].count;
     const data = originalData
       .filter((item) => item.response.toLowerCase() !== "total")
-      .sort((a, b) => b.count - a.count);
+      .reverse();
     const w = 900;
     const barWidth = 60;
     const h = data.length * barWidth;
@@ -221,6 +221,55 @@ function barChart(dataUrl, svgContainerId) {
       container.appendChild(barLegendContainer);
       barLegendContainer.appendChild(legend);
       barLegendContainer.appendChild(bar);
+    });
+  });
+}
+
+function verticalBarChart(dataUrl, svgContainerId) {
+  d3.csv(dataUrl, function (originalData) {
+    const total = originalData.filter(
+      (item) => item.response.toLowerCase() === "total"
+    )[0].count;
+    const data = originalData.filter(
+      (item) => item.response.toLowerCase() !== "total"
+    );
+    const h = 900;
+    const barWidth = 80;
+    const w = data.length * barWidth;
+    const padding = 10;
+
+    let scaledValues = [];
+    const value = data.map(function (item) {
+      return +item.count;
+    });
+    let valuesMin = d3.min(value);
+    let valuesMax = d3.max(value);
+    var diff = valuesMax - valuesMin;
+    const linearScale = d3
+      .scaleLinear()
+      .domain([valuesMin, valuesMax])
+      .range([(valuesMin / valuesMax) * h, diff < 20 ? h - 200 : h / 2]);
+
+    scaledValues = data.map(function (item) {
+      return {
+        scaledValue: linearScale(item.count),
+        ...item
+      };
+    });
+    scaledValues.forEach((item) => {
+      const container = document.getElementById(svgContainerId);
+      container.setAttribute("class", "vertical-barchart-container");
+      const barLegendContainer = document.createElement("div");
+      barLegendContainer.setAttribute("class", "vertical-bar-chart-container");
+      const bar = document.createElement("div");
+      const legend = document.createElement("div");
+      legend.setAttribute("class", "vertical-legend");
+      legend.innerHTML = item.response;
+      bar.setAttribute("class", "vertical-bar");
+      bar.setAttribute("style", `height:${item.scaledValue}px;`);
+      container.appendChild(barLegendContainer);
+      barLegendContainer.appendChild(bar);
+      barLegendContainer.appendChild(legend);
     });
   });
 }
@@ -265,7 +314,7 @@ barChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/gitter.csv",
   "gitter"
 );
-barChart(
+verticalBarChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/age.csv",
   "age"
 );
