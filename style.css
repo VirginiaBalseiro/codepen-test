@@ -90,6 +90,10 @@ hr {
 #first,
 #second,
 #third,
+#first-desc,
+#second-desc,
+#third-desc,
+#fourth-desc,
 .more-than-one-lang,
 .subheader-gold {
   color: #d6ae89;
@@ -104,31 +108,49 @@ hr {
 
 #first p,
 #second p,
-#third p {
+#third p,
+#first-desc p,
+#second-desc p,
+#third-desc p,
+#fourth-desc p {
   color: white;
 }
 
-#first {
+#first,
+#first-desc {
   font-size: 2rem;
 }
 
-#first p {
+#first p,
+#first-desc p {
   font-size: 1.5rem;
 }
 
-#second {
+#second,
+#second-desc {
   font-size: 1.8rem;
 }
 
-#second p {
+#second p,
+#second-desc p {
   font-size: 1.3rem;
 }
 
-#third {
+#third,
+#third-desc {
   font-size: 1.5rem;
 }
 
-#third p {
+#third p,
+#third-desc p {
+  font-size: 1rem;
+}
+
+#fourth-desc {
+  font-size: 1.5rem;
+}
+
+#fourth-desc p {
   font-size: 1rem;
 }
 
@@ -137,7 +159,8 @@ hr {
   flex-direction: column-reverse;
 }
 
-.countries-list {
+.countries-list,
+.descriptions-list {
   list-style-type: none;
   text-align: left;
   display: flex;
@@ -221,14 +244,16 @@ hr {
     padding: 3rem;
   }
 
+  section#country-question {
+    padding: 0 !important;
+  }
+
   #ethnicity-wrapper,
   #coding-wrapper {
     display: flex;
-    padding: 50px;
     flex-direction: row !important;
     align-items: center;
     line-height: 1;
-    width: 100%;
   }
 }
 
@@ -238,6 +263,7 @@ hr {
     width: 100%;
     grid-template-columns: 50% 50%;
     text-align: left;
+    padding: 0;
   }
 
   .title-container {
@@ -251,11 +277,16 @@ hr {
   .dates-and-participants {
     display: grid;
     grid-template-columns: 50% 50%;
+    padding: 0;
   }
 
   .map-and-legend-container {
     display: grid;
     grid-template-columns: 20% 80%;
+  }
+
+  section.country-question {
+    padding: 0 !important;
   }
   .countries-list {
     flex-direction: column;
@@ -355,10 +386,8 @@ a {
 #coding-wrapper {
   display: flex;
   flex-direction: column;
-  padding: 50px;
   align-items: center;
   line-height: 1;
-  width: 100%;
 }
 
 #ethnicity-2,
@@ -472,6 +501,10 @@ a {
   font-size: 2.5rem;
 }
 
+#understanding-solid .vertical-bar {
+  background-color: #d0b87f;
+}
+
 .bar {
   background-color: #80a68d;
   height: 60px;
@@ -492,7 +525,8 @@ a {
   justify-content: center;
 }
 
-.bar-chart-container {
+.bar-chart-container,
+.horizontal-ticks-wrapper {
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: 30% 70%;
@@ -502,6 +536,7 @@ a {
 .vertical-bar-chart-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .vertical-bar-chart-container:last-child > span.vertical-legend-tilt {
@@ -535,4 +570,54 @@ a {
   display: flex;
   text-transform: capitalize;
   text-align: right;
+}
+
+.vertical-ticks {
+  display: flex;
+  flex-direction: column-reverse;
+  align-self: flex-start;
+  min-height: 100%;
+  justify-content: space-between;
+  padding: 0 15px;
+}
+
+.horizontal-ticks {
+  grid-column: 2 /2;
+  display: flex;
+  flex-direction: row;
+  justify-self: flex-start;
+  min-height: 100%;
+  justify-content: space-between;
+  padding: 0 0 0 15px;
+  margin-top: 15px;
+}
+
+.horizontal-ticks-container {
+  display: grid;
+  grid-template-columns: 30% 70%;
+}
+
+.nested-chart,
+.nested-chart-show {
+  margin-left: 7rem;
+  display: none;
+}
+
+.nested-chart-show {
+  display: block;
+}
+
+.nested-chart-show div.bar {
+  background-color: #d0b87f;
+  height: 30px;
+}
+
+.expand {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
 }

@@ -177,23 +177,38 @@ function map() {
   }
 }
 
-function barChart(dataUrl, svgContainerId) {
+function barChart(dataUrl, svgContainerId, nested, subCharts) {
   d3.csv(dataUrl, function (originalData) {
     const total = originalData.filter(
       (item) => item.response.toLowerCase() === "total"
     )[0].count;
     const data = originalData
       .filter((item) => item.response.toLowerCase() !== "total")
-      .reverse();
+      .sort((a, b) => b.count - a.count);
+    console.log(data);
     const w = 900;
-    const barWidth = 60;
-    const h = data.length * barWidth;
-    const padding = 10;
 
     let scaledValues = [];
     const value = data.map(function (item) {
       return +item.count;
     });
+
+    const percentages = value
+      .map((v) => (v * total) / 100)
+      .sort((a, b) => a - b)
+      .map((v) => Math.ceil(v / 10) * 10);
+    const maxPerc = Math.min(percentages[percentages.length - 1], 100);
+
+    let ticks = [];
+    for (let i = 0; i <= maxPerc; i += 10) {
+      if (i === 0) {
+        ticks.push(`<div class="tick tick-zero" >${i}%</div>`);
+      } else {
+        ticks.push(`<div class="tick">${i}%</div>`);
+      }
+    }
+    ticks = ticks.join("");
+
     let valuesMin = d3.min(value);
     let valuesMax = d3.max(value);
     var diff = valuesMax - valuesMin;
@@ -208,20 +223,71 @@ function barChart(dataUrl, svgContainerId) {
         ...item
       };
     });
-    scaledValues.forEach((item) => {
+
+    const scaledNumbers = scaledValues.map((d) => d.scaledValue);
+    const widestBar = Math.max(...scaledNumbers);
+
+    const container = document.getElementById(svgContainerId);
+    const ticksContainer = document.createElement("div");
+    ticksContainer.setAttribute("class", "horizontal-ticks");
+    ticksContainer.setAttribute("style", `width: ${widestBar}px;`);
+    ticksContainer.innerHTML = ticks;
+
+    scaledValues.forEach((item, i) => {
+      const displaySubchart = () => {
+        const subchartContainer = subCharts?.filter((chart) => {
+          if (chart.index === i) {
+            return chart.container;
+          }
+        })[0]?.container;
+        const subchart = document.getElementById(subchartContainer);
+        if (subchart) {
+          const subchartClass = subchart.className;
+          console.log(subchartClass);
+          if (subchartClass !== "nested-chart-show") {
+            subchart.setAttribute("class", "nested-chart-show");
+          } else if (subchartClass === "nested-chart-show") {
+            subchart.setAttribute("class", "nested-chart");
+          }
+        }
+      };
       const container = document.getElementById(svgContainerId);
       const barLegendContainer = document.createElement("div");
       barLegendContainer.setAttribute("class", "bar-chart-container");
       const bar = document.createElement("div");
       const legend = document.createElement("div");
+      const button = document.createElement("button");
+      button.innerHTML = "+";
+      button.addEventListener("click", displaySubchart);
+      button.setAttribute("class", "expand");
       legend.setAttribute("class", "legend");
       legend.innerHTML = item.response;
       bar.setAttribute("class", "bar");
       bar.setAttribute("style", `width:${item.scaledValue}px;`);
+      const indices = subCharts?.map((chart) => chart.index);
+      if (nested && indices.includes(i)) {
+        container.appendChild(button);
+      }
       container.appendChild(barLegendContainer);
       barLegendContainer.appendChild(legend);
       barLegendContainer.appendChild(bar);
+      if (nested && indices.includes(i)) {
+        const subchartContainer = subCharts.filter((chart) => {
+          if (chart.index === i) {
+            return chart.container;
+          }
+        })[0].container;
+        const containerElement = document.createElement("div");
+        console.log(subchartContainer);
+        containerElement.setAttribute("id", subchartContainer);
+        containerElement.setAttribute("class", "nested-chart");
+        container.appendChild(containerElement);
+      }
     });
+    const ticksWrapper = document.createElement("div");
+    ticksWrapper.setAttribute("class", "horizontal-ticks-container");
+    container.appendChild(ticksWrapper);
+    ticksWrapper.appendChild(ticksContainer);
   });
 }
 
@@ -236,6 +302,23 @@ function verticalBarChart(dataUrl, svgContainerId, tilt = false) {
     const value = data.map(function (item) {
       return +item.count;
     });
+    const total = value.reduce((acc, val) => acc + val);
+
+    const percentages = value
+      .map((v) => (v * total) / 100)
+      .sort((a, b) => a - b)
+      .map((v) => Math.ceil(v / 10) * 10);
+    const maxPerc = Math.min(percentages[percentages.length - 1], 100);
+    let ticks = [];
+    for (let i = 0; i <= maxPerc; i += 10) {
+      if (i === 0) {
+        ticks.push(`<div class="tick tick-zero" >${i}%</div>`);
+      } else {
+        ticks.push(`<div class="tick">${i}%</div>`);
+      }
+    }
+    ticks = ticks.join("");
+
     let valuesMin = d3.min(value);
     let valuesMax = d3.max(value);
     var diff = valuesMax - valuesMin;
@@ -250,14 +333,28 @@ function verticalBarChart(dataUrl, svgContainerId, tilt = false) {
         ...item
       };
     });
+    const scaledNumbers = scaledValues.map((d) => d.scaledValue);
+    const highestBar = Math.max(...scaledNumbers);
+
+    const container = document.getElementById(svgContainerId);
+    const ticksContainer = document.createElement("div");
+    ticksContainer.setAttribute("class", "vertical-ticks");
+    ticksContainer.setAttribute("style", `height: ${highestBar + 15}px`);
+    ticksContainer.innerHTML = ticks;
+    container.appendChild(ticksContainer);
+
     scaledValues.forEach((item) => {
       const container = document.getElementById(svgContainerId);
       container.setAttribute("class", "vertical-barchart-container");
       const barLegendContainer = document.createElement("div");
+
       barLegendContainer.setAttribute("class", "vertical-bar-chart-container");
       const bar = document.createElement("div");
       const legend = document.createElement("span");
-      legend.setAttribute("class", `vertical-legend${tilt && "-tilt"}`);
+      legend.setAttribute(
+        "class",
+        tilt ? "vertical-legend-tilt" : "vertical-legend"
+      );
       legend.innerHTML = item.response;
       bar.setAttribute("class", "vertical-bar");
       bar.setAttribute("style", `height:${item.scaledValue}px;`);
@@ -268,18 +365,55 @@ function verticalBarChart(dataUrl, svgContainerId, tilt = false) {
   });
 }
 
+function nestedHorizontalBarChart() {
+  barChart(
+    "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/self_description_total.csv",
+    "self-description-total",
+    true,
+    [
+      { index: 0, container: "self-description-developers" },
+      { index: 2, container: "self-description-designers" },
+      { index: 4, container: "self-description-product" },
+      { index: 5, container: "self-description-writers" },
+      { index: 6, container: "self-description-academia" }
+    ]
+  );
+  barChart(
+    "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/self_description_academia.csv",
+    "self-description-academia"
+  );
+  barChart(
+    "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/self_description_designers.csv",
+    "self-description-designers"
+  );
+  barChart(
+    "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/self_description_devs.csv",
+    "self-description-developers"
+  );
+  barChart(
+    "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/self_description_product.csv",
+    "self-description-product"
+  );
+  barChart(
+    "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/self_description_writers.csv",
+    "self-description-writers"
+  );
+}
+
 map();
 
-pieChart(
+verticalBarChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/understand_solid.csv",
   "understanding-solid"
 );
+
+nestedHorizontalBarChart();
 
 pieChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/code.csv",
   "code"
 );
-pieChart(
+verticalBarChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/years_code.csv",
   "years-code"
 );
@@ -317,30 +451,7 @@ verticalBarChart(
   "education",
   true
 );
-barChart(
-  "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/self_description_total.csv",
-  "self-description-total"
-);
-barChart(
-  "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/self_description_academia.csv",
-  "self-description-academia"
-);
-barChart(
-  "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/self_description_designers.csv",
-  "self-description-designers"
-);
-barChart(
-  "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/self_description_devs.csv",
-  "self-description-developers"
-);
-barChart(
-  "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/self_description_product.csv",
-  "self-description-product"
-);
-barChart(
-  "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/self_description_writers.csv",
-  "self-description-writers"
-);
+
 barChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/events.csv",
   "events"
