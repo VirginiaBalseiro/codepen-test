@@ -18,13 +18,13 @@ function pieChart(dataUrl, svgContainer) {
   var color = d3
     .scaleOrdinal()
     .range([
+      "#E5DBFF",
+      "#BDA6FF",
       "#7C4DFF",
       "#9671FF",
       "#633DCC",
       "#4A2E99",
-      "#E5DBFF",
-      "#F1EDFF",
-      "#BDA6FF"
+      "#F1EDFF"
     ]);
 
   var arc = d3.arc().outerRadius(radius).innerRadius(100);
@@ -51,7 +51,7 @@ function pieChart(dataUrl, svgContainer) {
 
     const values = data.map((d) => d.count);
     const total = values.reduce((acc, val) => acc + val);
-    const filteredData = data.filter((d) => d.count > 3);
+    const filteredData = data.filter((d) => d.count > 4);
 
     var g = svg
       .selectAll(".arc")

@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <!-- partial:index.partial.html -->
       <div class="title-and-image-container">
         <img src="assets/background.png" class="image" />
         <div class="title-container">
@@ -65,7 +64,9 @@
         <h3>Participants</h3>
         </div>
       </section>
+      <section class="results">
       <h2 class="results">Results</h2>
+      <section id="country-question">
       <h3 class="subheader-gold">
         What country do you currently reside in?
       </h3>
@@ -81,39 +82,49 @@
         <div id="country"></div>
       </div>
     </div>
-      <h3 id="2-What-languages-do-you-speak-or-read">
-        2. What languages do you speak or read?
+  </section>
+  <section id="language-question">
+    <h3 class="subheader-gold">
+        What languages do you speak or read?
       </h3>
-      <p>Responses: 131</p>
+      <hr class="question-separator">
+      <h4 class="question-title">Question 2</h4>
       <p>
         Everyone selected English (the survey was only was offered in English).
       </p>
-      <p>Top 3 Languages (Besides English):</p>
-      <ol>
-        <li>French - 37% (49 responses)</li>
-        <li>German - 24% (32 responses)</li>
-        <li>Spanish - 15% (20 responses)</li>
-      </ol>
-      <p>
-        Respondents who speak or read more than one language: 66% (86 responses)
-      </p>
-      <p>Other languages spoken by members of the community:</p>
-      <ol>
-          <li>Danish: 3 respondents</li>
-          <li>Russian: 3 respondents</li>
-          <li>Arabic: 2 respondents</li>
-          <li>Japanese: 2 respondents</li>
-          <li>Norwegian: 2 respondents</li>
-          <li>Swedish: 2 respondents</li>
-          <li>Malay: 1 respondent</li>
-          <li>Bengali: 1 respondent</li>
-          <li>Catalan: 1 respondent</li>
-          <li>Czech: 1 respondent</li>
-          <li>Greek: 1 respondent</li>
-          <li>Hindi: 1 respondent</li>
-          <li>Estonian: 1 respondent</li>
-      </ol>
-      <div id="languages"></div>
+      <div class="language-and-legend-container">
+        <div id="language-chart-wrapper">
+        <div id="languages"></div>
+        </div>
+        <div class="other-details">
+          <h3 class="more-than-one-lang">66% </h3>
+          <p class="more-than-one">of the respondents speak or read more than one language</p>
+          <h4>Other languages spoken by members of the community:</h4>
+          <div class="language-lists-container">
+          <ul class="language-list">
+            <li>Italian: 4 respondents</li>
+            <li>Mandarin: 4 respondents</li>
+            <li>Portuguese: 4 respondents</li>
+            <li>Danish: 3 respondents</li>
+            <li>Russian: 3 respondents</li>
+            <li>Arabic: 2 respondents</li>
+            <li>Japanese: 2 respondents</li>
+            <li>Norwegian: 2 respondents</li>
+          </ul>
+          <ul class="language-list">
+            <li>Swedish: 2 respondents</li>
+            <li>Malay: 1 respondent</li>
+            <li>Bengali: 1 respondent</li>
+            <li>Catalan: 1 respondent</li>
+            <li>Czech: 1 respondent</li>
+            <li>Greek: 1 respondent</li>
+            <li>Hindi: 1 respondent</li>
+            <li>Estonian: 1 respondent</li>
+          </ul>
+        </div>
+        </div>
+    </div>
+    </section>
       <h3 id="3-What-categories-best-describe-you">
         3. What categories best describe you?
       </h3>
@@ -332,7 +343,7 @@
       </h3>
       <h3>25. What changes would you like to see in this community</h3>
       <h3>26. Any other comments?</h3>
-    <!-- partial -->
+    </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.2/d3.min.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>

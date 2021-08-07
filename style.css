@@ -89,8 +89,16 @@ hr {
 #first,
 #second,
 #third,
+.more-than-one-lang,
 .subheader-gold {
   color: #d6ae89;
+  line-height: initial;
+}
+
+.more-than-one-lang {
+  font-size: 3rem;
+  padding: 0px;
+  margin: 0px;
 }
 
 #first p,
@@ -134,6 +142,76 @@ hr {
   display: flex;
   flex-direction: column;
   align-self: flex-end;
+}
+
+.language-and-legend-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.language-list {
+  list-style-type: none;
+  font-size: 0.8rem;
+}
+
+.other-details {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.other-details ul {
+  padding: 0;
+}
+
+.more-than-one {
+  font-size: 1.8rem;
+  line-height: initial;
+  padding: 0px;
+  margin: 0px;
+}
+
+.language-lists-container {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-gap: 1rem;
+}
+
+#language-chart-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (min-width: 1100px) {
+  .other-details {
+    text-align: right;
+  }
+  .language-and-legend-container {
+    display: grid;
+    grid-template-columns: 60% 40%;
+  }
+  .language-list-container {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 1rem;
+  }
+  .language-list {
+    text-align: right;
+  }
+}
+
+@media only screen and (min-width: 950px) and (max-width: 1099px) {
+  .language-and-legend-container {
+    display: grid;
+    grid-template-columns: 60% 40%;
+  }
+  .language-lists-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .other-details {
+    text-align: right;
+  }
 }
 
 @media only screen and (min-width: 600px) {
