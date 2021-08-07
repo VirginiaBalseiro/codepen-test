@@ -225,18 +225,12 @@ function barChart(dataUrl, svgContainerId) {
   });
 }
 
-function verticalBarChart(dataUrl, svgContainerId) {
+function verticalBarChart(dataUrl, svgContainerId, tilt = false) {
   d3.csv(dataUrl, function (originalData) {
-    const total = originalData.filter(
-      (item) => item.response.toLowerCase() === "total"
-    )[0].count;
     const data = originalData.filter(
       (item) => item.response.toLowerCase() !== "total"
     );
     const h = 900;
-    const barWidth = 80;
-    const w = data.length * barWidth;
-    const padding = 10;
 
     let scaledValues = [];
     const value = data.map(function (item) {
@@ -262,8 +256,8 @@ function verticalBarChart(dataUrl, svgContainerId) {
       const barLegendContainer = document.createElement("div");
       barLegendContainer.setAttribute("class", "vertical-bar-chart-container");
       const bar = document.createElement("div");
-      const legend = document.createElement("div");
-      legend.setAttribute("class", "vertical-legend");
+      const legend = document.createElement("span");
+      legend.setAttribute("class", `vertical-legend${tilt && "-tilt"}`);
       legend.innerHTML = item.response;
       bar.setAttribute("class", "vertical-bar");
       bar.setAttribute("style", `height:${item.scaledValue}px;`);
@@ -318,9 +312,10 @@ verticalBarChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/age.csv",
   "age"
 );
-barChart(
+verticalBarChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/education.csv",
-  "education"
+  "education",
+  true
 );
 barChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/self_description_total.csv",

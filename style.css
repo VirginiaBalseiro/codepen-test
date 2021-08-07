@@ -504,13 +504,28 @@ a {
   flex-direction: column;
 }
 
+.vertical-bar-chart-container:last-child > span.vertical-legend-tilt {
+  transform: translate(-1rem, 1rem) rotate(-45deg);
+}
+
 .vertical-legend {
+  text-align: center;
+}
+
+.vertical-legend,
+.vertical-legend-tilt {
   align-items: center;
   justify-content: center;
   display: flex;
   text-transform: capitalize;
-  text-align: center;
   margin: 10px;
+}
+
+.vertical-legend-tilt {
+  transform: translate(-4rem, 2.5rem) rotate(-45deg);
+  white-space: nowrap;
+  margin-bottom: 6rem;
+  align-content: flex-end;
 }
 
 .legend {
