@@ -97,8 +97,8 @@ function pieChart(dataUrl, svgContainer) {
 
 function map() {
   var body = d3.select("body");
-  var width = 1200;
-  var height = 800;
+  var width = 800;
+  var height = 500;
 
   var tooltip = body
     .append("div")
@@ -116,9 +116,9 @@ function map() {
   var path = d3.geoPath();
   var projection = d3
     .geoMercator()
-    .scale(150)
+    .scale(120)
     .center([0, 0])
-    .translate([width / 2, height / 2]);
+    .translate([width / 2, height / 2 + 100]);
 
   // Data and color scale
   var data = d3.map();
@@ -231,6 +231,7 @@ pieChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/understand_solid.csv",
   "understanding-solid"
 );
+
 pieChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/code.csv",
   "code"
@@ -251,6 +252,7 @@ barChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/participate.csv",
   "participate"
 );
+
 barChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/github.csv",
   "github"

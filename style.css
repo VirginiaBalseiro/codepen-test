@@ -11,6 +11,21 @@ body {
   text-align: center;
 }
 
+section {
+  padding: 3rem;
+  line-height: 1.5rem;
+}
+
+hr {
+  width: 20%;
+  height: 3px;
+  background-color: #9671ff;
+  border: none;
+  text-align: center;
+  margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
+}
+
 .title-and-image-container {
   display: flex;
   width: 100%;
@@ -30,6 +45,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
+  line-height: initial;
 }
 
 .participants {
@@ -53,17 +69,71 @@ body {
 }
 
 .participants h3,
-.dates h3 {
+.dates h3,
+.question-title {
   font-size: 1rem;
   text-transform: uppercase;
+}
+
+.question-separator {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 40%;
 }
 
 .dates h3 {
   color: white;
 }
 
-#dates-title {
+#dates-title,
+#first,
+#second,
+#third,
+.subheader-gold {
   color: #d6ae89;
+}
+
+#first p,
+#second p,
+#third p {
+  color: white;
+}
+
+#first {
+  font-size: 2rem;
+}
+
+#first p {
+  font-size: 1.5rem;
+}
+
+#second {
+  font-size: 1.8rem;
+}
+
+#second p {
+  font-size: 1.3rem;
+}
+
+#third {
+  font-size: 1.5rem;
+}
+
+#third p {
+  font-size: 1rem;
+}
+
+.map-and-legend-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.countries-list {
+  list-style-type: none;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
 }
 
 @media only screen and (min-width: 600px) {
@@ -85,6 +155,11 @@ body {
   .dates-and-participants {
     display: grid;
     grid-template-columns: 50% 50%;
+  }
+
+  .map-and-legend-container {
+    display: grid;
+    grid-template-columns: 20% 80%;
   }
 }
 
