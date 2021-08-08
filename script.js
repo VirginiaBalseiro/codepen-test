@@ -294,18 +294,26 @@ function barChart(dataUrl, svgContainerId, nested, subCharts) {
   });
 }
 
-function verticalBarChart(dataUrl, svgContainerId, tilt = false) {
+function verticalBarChart(
+  dataUrl,
+  svgContainerId,
+  tilt = false,
+  removeLowerValues = false
+) {
   d3.csv(dataUrl, function (originalData) {
-    const data = originalData.filter(
+    let data = originalData.filter(
       (item) => item.response.toLowerCase() !== "total"
     );
+    if (removeLowerValues) {
+      data = data.filter((item) => item.count > 2);
+    }
     const h = 900;
 
     let scaledValues = [];
     const value = data.map(function (item) {
       return +item.count;
     });
-    const total = value.reduce((acc, val) => acc + val);
+    const total = originalData.reduce((acc, val) => acc + val);
 
     const percentages = value
       .map((v) => (v * total) / 100)
@@ -419,6 +427,12 @@ pieChart(
 verticalBarChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/years_code.csv",
   "years-code"
+);
+verticalBarChart(
+  "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/accessibility.csv",
+  "accessibility",
+  true,
+  true
 );
 pieChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/gender_identity.csv",

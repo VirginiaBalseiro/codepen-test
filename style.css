@@ -543,6 +543,16 @@ a {
   transform: translate(-1rem, 1rem) rotate(-45deg);
 }
 
+#accessibility-question {
+  padding-bottom: 6rem;
+}
+
+#accessibility-question
+  .vertical-bar-chart-container:last-child
+  > span.vertical-legend-tilt {
+  transform: translate(-4rem, 4rem) rotate(-45deg);
+}
+
 .vertical-legend {
   text-align: center;
 }
@@ -552,7 +562,6 @@ a {
   align-items: center;
   justify-content: center;
   display: flex;
-  text-transform: capitalize;
   margin: 10px;
 }
 
@@ -568,7 +577,6 @@ a {
   justify-content: flex-end;
   align-items: center;
   display: flex;
-  text-transform: capitalize;
   text-align: right;
 }
 
