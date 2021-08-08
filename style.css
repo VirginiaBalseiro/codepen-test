@@ -1,4 +1,6 @@
 html {
+  overflow-y: scroll;
+  scroll-snap-type: y proximity;
   scroll-behavior: smooth;
 }
 
@@ -15,6 +17,11 @@ section {
   text-align: center;
   padding: 1rem;
   line-height: 1.5rem;
+  scroll-snap-align: start;
+}
+
+section.chart {
+  min-height: 100vh;
 }
 
 hr {
@@ -32,6 +39,7 @@ hr {
   width: 100%;
   flex-direction: column-reverse;
   text-align: center;
+  scroll-snap-align: start;
 }
 
 .title-container {
@@ -42,7 +50,7 @@ hr {
   width: 100%;
 }
 
-.dates-and-participants {
+#dates-and-participants {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -317,7 +325,7 @@ ol.changes-sublist li {
     width: 100%;
   }
 
-  .dates-and-participants {
+  #dates-and-participants {
     display: grid;
     grid-template-columns: 50% 50%;
     padding: 0;
@@ -599,6 +607,7 @@ a {
 }
 
 .vertical-legend {
+  width: 100%;
   align-items: center;
   justify-content: center;
   display: flex;
