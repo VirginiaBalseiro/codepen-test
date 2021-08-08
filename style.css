@@ -1,4 +1,6 @@
 html {
+  overflow-y: scroll;
+  scroll-snap-type: y proximity;
   scroll-behavior: smooth;
   width: 100vw;
   height: 100vh;
@@ -16,6 +18,7 @@ body {
 section {
   text-align: center;
   line-height: 1.5rem;
+  scroll-snap-align: start;
 }
 
 section.chart {
@@ -37,6 +40,7 @@ hr {
   width: 100%;
   flex-direction: column-reverse;
   text-align: center;
+  scroll-snap-align: start;
 }
 
 .title-container {
@@ -658,11 +662,13 @@ a {
 
 .nested-chart,
 .nested-chart-show {
+  scroll-snap-align: start;
   margin-left: 7rem;
   display: none;
 }
 
 .nested-chart-show {
+  scroll-snap-align: start;
   display: block;
 }
 
