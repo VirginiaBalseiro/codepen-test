@@ -1,7 +1,7 @@
 html {
-  overflow-y: scroll;
-  scroll-snap-type: y proximity;
   scroll-behavior: smooth;
+  width: 100vw;
+  height: 100vh;
 }
 
 body {
@@ -15,9 +15,7 @@ body {
 
 section {
   text-align: center;
-  padding: 1rem;
   line-height: 1.5rem;
-  scroll-snap-align: start;
 }
 
 section.chart {
@@ -39,7 +37,6 @@ hr {
   width: 100%;
   flex-direction: column-reverse;
   text-align: center;
-  scroll-snap-align: start;
 }
 
 .title-container {
