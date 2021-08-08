@@ -19,7 +19,7 @@ section {
 
 hr {
   width: 20%;
-  height: 3px;
+  height: 0.4rem;
   background-color: #9671ff;
   border: none;
   text-align: center;
@@ -145,8 +145,8 @@ ol.changes-sublist li {
 
 .more-than-one-lang {
   font-size: 3rem;
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
 }
 
 #first p,
@@ -359,12 +359,12 @@ h3 {
 }
 
 .doc {
-  padding: 30px;
+  padding: 2rem;
 }
 
 div.tooltip {
   position: absolute;
-  padding: 10px;
+  padding: 0.75rem;
   opacity: 0;
   background-color: white;
   color: black;
@@ -405,9 +405,9 @@ a {
 .white-black-or-african-american,
 .hispanic-latino-or-spanish-origin-white-,
 .white-middle-eastern-or-north-african {
-  width: 25px;
-  height: 25px;
-  margin: 5px;
+  width: 2rem;
+  height: 2rem;
+  margin: 0.3rem;
   border-radius: 50%;
   display: inline-block;
   cursor: pointer;
@@ -490,7 +490,7 @@ a {
 
 .ethnic-category-tooltip {
   position: absolute;
-  padding: 10px;
+  padding: 0.75rem;
   opacity: 0;
   background-color: white;
   color: black;
@@ -508,14 +508,14 @@ a {
 
 .yes,
 .no {
-  width: 35px;
-  height: 35px;
+  width: 2.5rem;
+  height: 2.5rem;
   font-size: 2.5rem;
 }
 
 .yes i,
 .no i {
-  padding: 5px;
+  padding: 0.3rem;
 }
 
 .yes {
@@ -550,23 +550,23 @@ a {
 
 .bar {
   background-color: #80a68d;
-  height: 60px;
+  height: 4rem;
   border-radius: 0 5px 5px 0;
-  margin: 5px;
+  margin: 0.3rem;
 }
 
 .vertical-bar {
   background-color: #0e8ebe;
-  width: 80px;
+  width: 5rem;
   border-radius: 5px 5px 0 0;
-  margin: 10px;
+  margin: 0.75rem;
 }
 
 .vertical-bars-container,
 .vertical-legends-container {
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 100%;
 }
 
@@ -575,7 +575,7 @@ a {
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: 20% 80%;
-  grid-gap: 15px;
+  grid-gap: 1rem;
 }
 
 .vertical-bar-chart-container {
@@ -599,14 +599,11 @@ a {
 }
 
 .vertical-legend {
-  text-align: center;
-  max-width: 80px;
-}
-
-.vertical-legend {
   align-items: center;
   justify-content: center;
   display: flex;
+  text-align: center;
+  height: fit-content;
 }
 .vertical-legend-tilt {
   align-items: center;
@@ -635,7 +632,7 @@ a {
   align-self: flex-start;
   min-height: 100%;
   justify-content: space-between;
-  padding: 0 15px;
+  padding: 0 1rem;
 }
 
 .horizontal-ticks {
@@ -643,10 +640,9 @@ a {
   display: flex;
   flex-direction: row;
   justify-self: flex-start;
-  min-height: 100%;
   justify-content: space-between;
-  padding: 0 0 0 15px;
-  margin-top: 15px;
+  padding: 0 0 0 1rem;
+  margin-top: 1rem;
 }
 
 .horizontal-ticks-container {
@@ -666,13 +662,13 @@ a {
 
 .nested-chart-show div.bar {
   background-color: #d0b87f;
-  height: 30px;
+  height: 2rem;
 }
 
 .expand {
   display: flex;
   background: none;
-  margin: 10px;
+  margin: 0.75rem;
   width: 1rem;
   font-size: 1.5rem;
   color: inherit;
@@ -690,8 +686,14 @@ a {
   margin-bottom: 6rem;
 }
 
+.legend-wrapper-tilt {
+  width: 4rem;
+}
+
 .legend-wrapper {
-  width: 80px;
+  width: 4rem;
+  display: flex;
+  align-self: baseline;
 }
 
 .word-cloud {
@@ -743,5 +745,5 @@ ul.word-cloud p {
 }
 
 #attending {
-  margin-bottom: 12rem;
+  margin-bottom: 20rem;
 }

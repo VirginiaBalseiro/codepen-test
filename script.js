@@ -369,7 +369,10 @@ function verticalBarChart(
       container.setAttribute("class", "vertical-barchart-container");
       const bar = document.createElement("div");
       const legendWrapper = document.createElement("div");
-      legendWrapper.setAttribute("class", "legend-wrapper");
+      legendWrapper.setAttribute(
+        "class",
+        tilt ? "legend-wrapper-tilt" : "legend-wrapper"
+      );
       const legend = document.createElement("span");
       legend.setAttribute(
         "class",
@@ -445,7 +448,8 @@ verticalBarChart(
 
 verticalBarChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/update.csv",
-  "update"
+  "update",
+  true
 );
 
 nestedHorizontalBarChart();
