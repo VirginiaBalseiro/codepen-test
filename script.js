@@ -246,10 +246,14 @@ function barChart(dataUrl, svgContainerId, nested, subCharts) {
           console.log(subchartClass);
           if (subchartClass !== "nested-chart-show") {
             subchart.setAttribute("class", "nested-chart-show");
-            document.getElementById("expand-button").innerHTML = "-";
+            document.getElementById(
+              `expand-button-${item.response.substr(0, 5)}`
+            ).innerHTML = "-";
           } else if (subchartClass === "nested-chart-show") {
             subchart.setAttribute("class", "nested-chart");
-            document.getElementById("expand-button").innerHTML = "+";
+            document.getElementById(
+              `expand-button-${item.response.substr(0, 5)}`
+            ).innerHTML = "+";
           }
         }
       };
@@ -259,7 +263,7 @@ function barChart(dataUrl, svgContainerId, nested, subCharts) {
       const bar = document.createElement("div");
       const legend = document.createElement("div");
       const button = document.createElement("button");
-      button.setAttribute("id", "expand-button");
+      button.setAttribute("id", `expand-button-${item.response.substr(0, 5)}`);
       button.innerHTML = "+";
       button.addEventListener("click", displaySubchart);
       button.setAttribute("class", "expand");
