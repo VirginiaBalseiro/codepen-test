@@ -314,16 +314,20 @@ function verticalBarChart(
     const h = 900;
 
     let scaledValues = [];
+    const originalValues = originalData.map(function (item) {
+      return +item.count;
+    });
     const value = data.map(function (item) {
       return +item.count;
     });
-    const total = originalData.reduce((acc, val) => acc + val);
+    const total = originalValues.reduce((acc, val) => acc + val);
 
     const percentages = value
       .map((v) => (v * total) / 100)
       .sort((a, b) => a - b)
       .map((v) => Math.ceil(v / 10) * 10);
     const maxPerc = Math.min(percentages[percentages.length - 1], 100);
+    console.log(percentages);
     let ticks = [];
     for (let i = 0; i <= maxPerc; i += 10) {
       if (i === 0) {
@@ -352,19 +356,25 @@ function verticalBarChart(
     const highestBar = Math.max(...scaledNumbers);
 
     const container = document.getElementById(svgContainerId);
+    const chartContainer = document.createElement("div");
     const ticksContainer = document.createElement("div");
     ticksContainer.setAttribute("class", "vertical-ticks");
     ticksContainer.setAttribute("style", `height: ${highestBar + 15}px`);
     ticksContainer.innerHTML = ticks;
+    console.log("ticks", ticks);
+    chartContainer.append(ticksContainer);
     container.appendChild(ticksContainer);
+    const legendsContainer = document.createElement("div");
+    const barsContainer = document.createElement("div");
+    barsContainer.setAttribute("class", "vertical-bars-container");
+    legendsContainer.setAttribute("class", "vertical-legends-container");
 
     scaledValues.forEach((item) => {
       const container = document.getElementById(svgContainerId);
       container.setAttribute("class", "vertical-barchart-container");
-      const barLegendContainer = document.createElement("div");
-
-      barLegendContainer.setAttribute("class", "vertical-bar-chart-container");
       const bar = document.createElement("div");
+      const legendWrapper = document.createElement("div");
+      legendWrapper.setAttribute("class", "legend-wrapper");
       const legend = document.createElement("span");
       legend.setAttribute(
         "class",
@@ -373,10 +383,14 @@ function verticalBarChart(
       legend.innerHTML = item.response;
       bar.setAttribute("class", "vertical-bar");
       bar.setAttribute("style", `height:${item.scaledValue}px;`);
-      container.appendChild(barLegendContainer);
-      barLegendContainer.appendChild(bar);
-      barLegendContainer.appendChild(legend);
+      container.appendChild(barsContainer);
+      barsContainer.appendChild(bar);
+      legendWrapper.appendChild(legend);
+      legendsContainer.appendChild(legendWrapper);
     });
+    chartContainer.appendChild(barsContainer);
+    chartContainer.appendChild(legendsContainer);
+    container.append(chartContainer);
   });
 }
 
@@ -420,6 +434,12 @@ map();
 verticalBarChart(
   "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/understand_solid.csv",
   "understanding-solid"
+);
+
+verticalBarChart(
+  "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/learn_solid.csv",
+  "solid-learn",
+  true
 );
 
 nestedHorizontalBarChart();

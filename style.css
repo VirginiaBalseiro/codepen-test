@@ -519,10 +519,12 @@ a {
   margin: 10px;
 }
 
-.vertical-barchart-container {
+.vertical-bars-container,
+.vertical-legends-container {
   display: flex;
   align-items: flex-end;
-  justify-content: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .bar-chart-container,
@@ -550,26 +552,30 @@ a {
 #accessibility-question
   .vertical-bar-chart-container:last-child
   > span.vertical-legend-tilt {
-  transform: translate(-4rem, 4rem) rotate(-45deg);
+  transform: translate(-1rem, 1rem) rotate(-45deg);
 }
 
 .vertical-legend {
   text-align: center;
+  max-width: 80px;
 }
 
-.vertical-legend,
-.vertical-legend-tilt {
+.vertical-legend {
   align-items: center;
   justify-content: center;
   display: flex;
-  margin: 10px;
+}
+.vertical-legend-tilt {
+  align-items: center;
+  justify-content: flex-end;
+  display: flex;
 }
 
 .vertical-legend-tilt {
-  transform: translate(-4rem, 2.5rem) rotate(-45deg);
-  white-space: nowrap;
-  margin-bottom: 6rem;
+  transform: translate(-30%, 2rem) rotate(-45deg);
   align-content: flex-end;
+  white-space: nowrap;
+  padding-left: 50%;
 }
 
 .legend {
@@ -632,4 +638,15 @@ a {
   padding: 0;
   cursor: pointer;
   outline: inherit;
+}
+
+.vertical-barchart-container {
+  display: grid;
+  grid-template-columns: 10% 90%;
+  grid-template-rows: 80% 20%;
+  margin-bottom: 6rem;
+}
+
+.legend-wrapper {
+  width: 80px;
 }
