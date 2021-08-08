@@ -185,7 +185,6 @@ function barChart(dataUrl, svgContainerId, nested, subCharts) {
     const data = originalData
       .filter((item) => item.response.toLowerCase() !== "total")
       .sort((a, b) => b.count - a.count);
-    console.log(data);
     const w = 900;
 
     let scaledValues = [];
@@ -243,7 +242,6 @@ function barChart(dataUrl, svgContainerId, nested, subCharts) {
         const subchart = document.getElementById(subchartContainer);
         if (subchart) {
           const subchartClass = subchart.className;
-          console.log(subchartClass);
           if (subchartClass !== "nested-chart-show") {
             subchart.setAttribute("class", "nested-chart-show");
             document.getElementById(
@@ -285,7 +283,6 @@ function barChart(dataUrl, svgContainerId, nested, subCharts) {
           }
         })[0].container;
         const containerElement = document.createElement("div");
-        console.log(subchartContainer);
         containerElement.setAttribute("id", subchartContainer);
         containerElement.setAttribute("class", "nested-chart");
         container.appendChild(containerElement);
@@ -327,7 +324,6 @@ function verticalBarChart(
       .sort((a, b) => a - b)
       .map((v) => Math.ceil(v / 10) * 10);
     const maxPerc = Math.min(percentages[percentages.length - 1], 100);
-    console.log(percentages);
     let ticks = [];
     for (let i = 0; i <= maxPerc; i += 10) {
       if (i === 0) {
@@ -361,7 +357,6 @@ function verticalBarChart(
     ticksContainer.setAttribute("class", "vertical-ticks");
     ticksContainer.setAttribute("style", `height: ${highestBar + 15}px`);
     ticksContainer.innerHTML = ticks;
-    console.log("ticks", ticks);
     chartContainer.append(ticksContainer);
     container.appendChild(ticksContainer);
     const legendsContainer = document.createElement("div");
