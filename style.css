@@ -95,9 +95,52 @@ hr {
 #third-desc,
 #fourth-desc,
 .more-than-one-lang,
-.subheader-gold {
+.subheader-gold,
+.participation-cat h4,
+.changes-cat h4 {
   color: #d6ae89;
   line-height: initial;
+}
+
+ol#participation-cats,
+ol#changes-cats {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1;
+  grid-column-gap: 4rem;
+  text-align: left;
+  margin: 0;
+}
+
+ol.participation-sublist,
+ol.changes-sublist {
+  list-style-type: none;
+  font-size: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+ol.participation-sublist li,
+ol.changes-sublist li {
+  margin-bottom: 2rem;
+}
+
+.participation-cat h4,
+.changes-cat h4 {
+  font-size: 2rem;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+.participation-cat,
+.changes-cat {
+  font-size: 1.5rem;
+  align-content: flex-end;
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 3fr 1fr;
 }
 
 .more-than-one-lang {
@@ -697,4 +740,8 @@ ul.word-cloud p {
 
 #quote {
   font-size: 5rem;
+}
+
+#attending {
+  margin-bottom: 12rem;
 }

@@ -437,6 +437,17 @@ verticalBarChart(
   true
 );
 
+verticalBarChart(
+  "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/attending.csv",
+  "attending",
+  true
+);
+
+verticalBarChart(
+  "https://raw.githubusercontent.com/VirginiaBalseiro/testdata/main/update.csv",
+  "update"
+);
+
 nestedHorizontalBarChart();
 
 pieChart(
