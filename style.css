@@ -531,7 +531,7 @@ a {
 .horizontal-ticks-wrapper {
   display: grid;
   grid-template-rows: auto;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 20% 80%;
   grid-gap: 15px;
 }
 
@@ -608,7 +608,7 @@ a {
 
 .horizontal-ticks-container {
   display: grid;
-  grid-template-columns: 30% 70%;
+  grid-template-columns: 20% 80%;
 }
 
 .nested-chart,
@@ -649,4 +649,52 @@ a {
 
 .legend-wrapper {
   width: 80px;
+}
+
+.word-cloud {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  line-height: 2.5rem;
+}
+
+ul.word-cloud p {
+  display: block;
+  font-size: 1.5rem;
+  padding: 0.125rem 0.25rem;
+  text-decoration: none;
+  position: relative;
+}
+
+ul.word-cloud p[data-weight="3"] {
+  --size: 3;
+  color: #817c8f;
+  width: 20rem;
+}
+ul.word-cloud p[data-weight="4"] {
+  --size: 4;
+  width: 35rem;
+}
+ul.word-cloud p[data-weight="5"] {
+  --size: 5;
+  color: #d6ae89;
+  width: 30rem;
+}
+ul.word-cloud p[data-weight="9"] {
+  --size: 9;
+  color: #9671ff;
+  width: 40rem;
+}
+
+ul.word-cloud p {
+  --size: 4;
+  font-size: calc(var(--size) * 0.25rem + 0.5rem);
+  /* ... */
+}
+
+#quote {
+  font-size: 5rem;
 }
