@@ -613,11 +613,15 @@ a {
 }
 
 .expand {
+  display: flex;
   background: none;
+  margin: 10px;
+  width: 1rem;
+  font-size: 1.5rem;
   color: inherit;
+  text-align: center;
   border: none;
   padding: 0;
-  font: inherit;
   cursor: pointer;
   outline: inherit;
 }

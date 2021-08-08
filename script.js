@@ -246,8 +246,10 @@ function barChart(dataUrl, svgContainerId, nested, subCharts) {
           console.log(subchartClass);
           if (subchartClass !== "nested-chart-show") {
             subchart.setAttribute("class", "nested-chart-show");
+            document.getElementById("expand-button").innerHTML = "-";
           } else if (subchartClass === "nested-chart-show") {
             subchart.setAttribute("class", "nested-chart");
+            document.getElementById("expand-button").innerHTML = "+";
           }
         }
       };
@@ -257,6 +259,7 @@ function barChart(dataUrl, svgContainerId, nested, subCharts) {
       const bar = document.createElement("div");
       const legend = document.createElement("div");
       const button = document.createElement("button");
+      button.setAttribute("id", "expand-button");
       button.innerHTML = "+";
       button.addEventListener("click", displaySubchart);
       button.setAttribute("class", "expand");
@@ -265,10 +268,10 @@ function barChart(dataUrl, svgContainerId, nested, subCharts) {
       bar.setAttribute("class", "bar");
       bar.setAttribute("style", `width:${item.scaledValue}px;`);
       const indices = subCharts?.map((chart) => chart.index);
-      if (nested && indices.includes(i)) {
-        container.appendChild(button);
-      }
       container.appendChild(barLegendContainer);
+      if (nested && indices.includes(i)) {
+        legend.appendChild(button);
+      }
       barLegendContainer.appendChild(legend);
       barLegendContainer.appendChild(bar);
       if (nested && indices.includes(i)) {
